@@ -51,5 +51,49 @@ var getRecipe = function(keyword,cuisine) {
 	});
 }
 
+//1 - Create the Allergy Dropdown in the HTML
+//2 - match the option tags to what the API Docs lists as the possibly allowedAlergen[]'s
+//3 - create the JS variable that grabs the .val() from the dropdown
+//4 - pass that variable as a parameter to your other functions
+//5 - adjust the functions to accept that parameter
+//6 - add the allowedAllergy[] portion to the API url and concatenate your variable in
 
-
+	// for allergy
+		if ($('input[name=allergy]:checked').length > 0){
+			console.log($('input[name=allergy]:checked'));
+			var allergyArray = [];
+			var allergy = $('input[name=allergy]:checked');
+			$.each(allergy, function(key, value){
+				allergyArray.push(value['value']);
+			})
+			if (jQuery.inArray( "Wheat", allergyArray ) >= 0){
+				url += '&allowedAllergy[]=392^Wheat-Free'
+			}
+			if (jQuery.inArray( "Gluten", allergyArray ) >= 0){
+				url += '&allowedAllergy[]=393^Gluten-Free'
+			}
+			if (jQuery.inArray( "Peanut", allergyArray ) >= 0){
+				url += '&allowedAllergy[]=394^Peanut-Free'
+			}
+			if (jQuery.inArray( "Tree", allergyArray ) >= 0){
+				url += '&allowedAllergy[]=395^Tree Nut-Free'
+			}
+			if (jQuery.inArray( "Dairy", allergyArray ) >= 0){
+				url += '&allowedAllergy[]=396^Dairy-Free'
+			}
+			if (jQuery.inArray( "Egg", allergyArray ) >= 0){
+				url += '&allowedAllergy[]=397^Egg-Free'
+			}
+			if (jQuery.inArray( "Seafood", allergyArray ) >= 0){
+				url += '&allowedAllergy[]=398^Seafood-Free'
+			}
+			if (jQuery.inArray( "Sesame", allergyArray ) >= 0){
+				url += '&allowedAllergy[]=399^Sesame-Free'
+			}
+			if (jQuery.inArray( "Soy", allergyArray ) >= 0){
+				url += '&allowedAllergy[]=400^Soy-Free'
+			}
+			if (jQuery.inArray( "Sulfite", allergyArray ) >= 0){
+				url += '&allowedAllergy[]=401^Sulfite-Free'
+			}	
+		}
